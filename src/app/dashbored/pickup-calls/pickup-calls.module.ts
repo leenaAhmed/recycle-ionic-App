@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { PickupCallsPageRoutingModule } from './pickup-calls-routing.module';
 
-import { HomePage } from './home.page';
+import { PickupCallsPage } from './pickup-calls.page';
 import { PickupCardComponent } from 'src/app/components/pickup-card/pickup-card.component';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { PickupCardComponent } from 'src/app/components/pickup-card/pickup-card.
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
+    PickupCallsPageRoutingModule,
     PickupCardComponent,
   ],
-  declarations: [HomePage],
+  declarations: [PickupCallsPage],
 })
-export class HomePageModule {}
+export class PickupCallsPageModule {}

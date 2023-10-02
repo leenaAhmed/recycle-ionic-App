@@ -29,6 +29,10 @@ const routes: Routes = [
     path: 'pickup-call',
     loadChildren: () => import('./dashbored/pickup-call/pickup-call.module').then( m => m.PickupCallPageModule)
   },
+  {
+    path: 'pickup-calls',
+    loadChildren: () => import('./dashbored/pickup-calls/pickup-calls.module').then( m => m.PickupCallsPageModule)
+  },
 ];
 
 @NgModule({

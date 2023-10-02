@@ -1,13 +1,32 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>pickup-call</ion-title>
+  <ion-toolbar color="success">
+    <ion-button slot="start" fill="clear" color="primary">
+      <ion-back-button text=""></ion-back-button>
+    </ion-button>
+    <ion-title>Pick-Up Call</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pickup-call</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <img
+    src="https://static.vecteezy.com/system/resources/previews/014/194/215/original/avatar-icon-human-a-person-s-badge-social-media-profile-symbol-the-symbol-of-a-person-vector.jpg"
+    alt="">
+  <ion-card>
+    <ion-card-content>
+      <p>Adress : fake ad </p>
+      <p>complment : fake </p>
+      <p>Neighborhood : Neighborhood </p>
+      <p>Zip Code : 85746 </p>
+      <p>State : str </p>
+      <p>City Name : Cairo </p>
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-item lines="inset">
+      <ion-label position="floating">Notes</ion-label>
+      <ion-textarea placeholder="Type something here"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-button color="success" size="full"> Create PickUp Call</ion-button>
 </ion-content>
