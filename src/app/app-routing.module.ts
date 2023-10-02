@@ -21,6 +21,14 @@ const routes: Routes = [
     path: 'sign-up',
     loadChildren: () => import('./authentaction/sign-up/sign-up.module').then( m => m.SignUpPageModule)
   },
+  {
+    path: 'home',
+    loadChildren: () => import('./dashbored/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'pickup-call',
+    loadChildren: () => import('./dashbored/pickup-call/pickup-call.module').then( m => m.PickupCallPageModule)
+  },
 ];
 
 @NgModule({
