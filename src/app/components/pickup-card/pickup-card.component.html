@@ -1,7 +1,5 @@
 <ion-card>
-  <ion-card-header *ngIf="hasHeader">
-    <ion-card-subtitle> Last pickup call</ion-card-subtitle>
-  </ion-card-header>
+  <ng-content select="[header]"></ng-content>
   <ion-card-content>
     <ion-item lines="none">
       <ion-icon [name]="icon" slot="start" [color]="IconColor"></ion-icon>
@@ -20,6 +18,8 @@
       <ion-icon name="trophy" slot="start" color="success"></ion-icon>
       <ion-label color="success">$15,00</ion-label>
     </ion-item>
-    <ion-button *ngIf="hasFooter" color="success" fill="clear" size="full"> See All ...</ion-button>
+
+    <ng-content select="[footer]"></ng-content>
+
   </ion-card-content>
 </ion-card>

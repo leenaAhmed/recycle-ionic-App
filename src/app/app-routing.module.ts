@@ -15,23 +15,36 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./authentaction/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () =>
+      import('./authentaction/login/login.module').then(
+        (m) => m.LoginPageModule
+      ),
   },
   {
     path: 'sign-up',
-    loadChildren: () => import('./authentaction/sign-up/sign-up.module').then( m => m.SignUpPageModule)
+    loadChildren: () =>
+      import('./authentaction/sign-up/sign-up.module').then(
+        (m) => m.SignUpPageModule
+      ),
   },
   {
     path: 'home',
-    loadChildren: () => import('./dashbored/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () =>
+      import('./dashbored/home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: 'pickup-call',
-    loadChildren: () => import('./dashbored/pickup-call/pickup-call.module').then( m => m.PickupCallPageModule)
+    loadChildren: () =>
+      import('./dashbored/pickup-call/pickup-call.module').then(
+        (m) => m.PickupCallPageModule
+      ),
   },
   {
     path: 'pickup-calls',
-    loadChildren: () => import('./dashbored/pickup-calls/pickup-calls.module').then( m => m.PickupCallsPageModule)
+    loadChildren: () =>
+      import('./dashbored/pickup-calls/pickup-calls.module').then(
+        (m) => m.PickupCallsPageModule
+      ),
   },
 ];
 

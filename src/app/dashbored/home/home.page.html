@@ -21,10 +21,18 @@
       </ion-label>
     </ion-item>
   </ion-list>
-  <app-pickup-card icon="hourglass-outline" [hasFooter]="true" [hasHeader]="true"></app-pickup-card>
+  <app-pickup-card icon="hourglass-outline" icon="hourglass-outline" IconColor="warning" status="Hold on"
+    UpdatedAt="22/04/2008 16:00:55" createdAt="22/04/2008 16:00:55"
+    notes="we have two bags that are full, One with plastic and the other with glass">
+    <ion-card-header header>
+      <ion-card-subtitle> Last pickup call</ion-card-subtitle>
+    </ion-card-header>
+    <ion-button color="success" (click)="Pickupcalls()" fill="clear" size="full" footer> See All ...</ion-button>
+
+  </app-pickup-card>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button color="success">
+    <ion-fab-button color="success" (click)="newPickupcall()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
