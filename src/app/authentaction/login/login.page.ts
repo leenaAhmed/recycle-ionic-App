@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { State } from 'src/store/appState';
+import { Hide, Show } from 'src/store/loading/loading.action';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +13,11 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   private formBuilder: FormBuilder;
   form: FormGroup<any>;
-  constructor(private router: Router, private fromBuild: FormBuilder) {
+  constructor(
+    private router: Router,
+    private fromBuild: FormBuilder,
+    private store: Store<State>
+  ) {
     this.formBuilder = fromBuild;
     this.form = this.createForm();
   }
@@ -20,7 +27,12 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    this.router.navigate(['home']);
+    this.store.dispatch(Show());
+
+    setTimeout(() => {
+      this.store.dispatch(Hide());
+      this.router.navigate(['home']);
+    }, 2000);
   }
   register() {
     this.router.navigate(['sign-up']);
