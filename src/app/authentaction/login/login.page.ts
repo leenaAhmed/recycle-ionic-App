@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { State } from 'src/store/appState';
+import { AppState } from 'src/store/appState';
 import { Hide, Show } from 'src/store/loading/loading.action';
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private fromBuild: FormBuilder,
-    private store: Store<State>
+    private store: Store<AppState>
   ) {
     this.formBuilder = fromBuild;
     this.form = this.createForm();

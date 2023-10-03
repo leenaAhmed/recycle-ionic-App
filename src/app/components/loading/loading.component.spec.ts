@@ -4,13 +4,13 @@ import { IonicModule } from '@ionic/angular';
 import { LoadingComponent } from './loading.component';
 import { Store, StoreModule } from '@ngrx/store';
 import { loadingReducer } from 'src/store/loading/loading.reducers';
-import { State } from 'src/store/appState';
+import { AppState } from 'src/store/appState';
 import { Hide, Show } from 'src/store/loading/loading.action';
 
 describe('LoadingComponent', () => {
   let component: LoadingComponent;
   let fixture: ComponentFixture<LoadingComponent>;
-  let store: Store<State>;
+  let store: Store<AppState>;
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LoadingComponent],
