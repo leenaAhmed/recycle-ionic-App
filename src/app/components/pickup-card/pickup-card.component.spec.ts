@@ -9,8 +9,7 @@ describe('PickupCardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PickupCardComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), PickupCardComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PickupCardComponent);
