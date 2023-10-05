@@ -29,7 +29,8 @@
             Email is Not Valid
           </ion-label>
 
-          <ion-button color="primary" fill="clear" size="full" [disabled]="!form.get('email')?.valid"> Forgot
+          <ion-button id="recoverPasswordBtn" color="primary" fill="clear" size="full"
+            [disabled]="!form.get('email')?.valid" (click)="forgetEmailPassword()"> Forgot
             Password</ion-button>
 
           <ion-button color="success" size="full" [disabled]="!form.valid" (click)="login()"> Login</ion-button>

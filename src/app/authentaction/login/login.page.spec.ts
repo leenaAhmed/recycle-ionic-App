@@ -6,17 +6,27 @@ import {
   waitForAsync,
 } from '@angular/core/testing';
 import { LoginPage } from './login.page';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { Router } from '@angular/router';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { loadingReducer } from 'src/store/loading/loading.reducers';
+import { AppState } from 'src/store/appState';
+import { LoginReducer } from 'src/store/login/loagin.reducers';
+import {
+  RecoveredPassword,
+  RecoveredPassworedFailure,
+  RecoveredPassworedSuccess,
+} from 'src/store/login/login.action';
 
 describe('LoginPage', () => {
   let component: LoginPage;
   let fixture: ComponentFixture<LoginPage>;
   let router: Router;
+  let page: any;
+  let store: Store<AppState>;
+  let toast: ToastController;
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -25,14 +35,17 @@ describe('LoginPage', () => {
         ReactiveFormsModule,
         StoreModule.forRoot([]),
         StoreModule.forFeature('loading', loadingReducer),
+        StoreModule.forFeature('login', LoginReducer),
       ],
       declarations: [LoginPage],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginPage);
     component = fixture.componentInstance;
-
+    page = fixture.debugElement.nativeElement;
+    store = TestBed.get(Store);
     router = TestBed.get(Router);
+    toast = TestBed.get(ToastController);
     fixture.detectChanges();
   }));
 
@@ -85,5 +98,55 @@ describe('LoginPage', () => {
     form.get('password')?.setValue('anyPassword');
 
     expect(form.valid).toBeTruthy();
+  });
+
+  it('should recover email/password on forget email/password', () => {
+    //  start page
+    fixture.detectChanges();
+    // user set valid password
+    component.form.get('email')?.setValue('vaild@gmail.com');
+    // user click on password
+    page.querySelector('#recoverPasswordBtn').click();
+    // expect login.recoveremail is true
+    store.select('login').subscribe((loginstate) => {
+      expect(loginstate.isRecoveringPassword).toBeTruthy();
+    });
+  });
+
+  it('should show loading when recovering email', () => {
+    fixture.detectChanges();
+    // component.ngOnInit();
+    // change recovering to be true
+    store.dispatch(RecoveredPassword());
+    // verify loading
+    store.select('loading').subscribe((loadingState) => {
+      expect(loadingState.show).toBeTruthy();
+    });
+  });
+
+  it('should hide  loading and show sucess message ', () => {
+    spyOn(toast, 'create');
+    fixture.detectChanges();
+    store.dispatch(RecoveredPassword());
+    store.dispatch(RecoveredPassworedSuccess());
+
+    store.select('loading').subscribe((loadingState) => {
+      expect(loadingState.show).toBeFalsy();
+    });
+    expect(toast.create).toHaveBeenCalledTimes(1);
+  });
+
+  it('should hide  loading and show sucess message when error on recover message ', () => {
+    spyOn(toast, 'create');
+
+    fixture.detectChanges();
+    store.dispatch(RecoveredPassword());
+    store.dispatch(
+      RecoveredPassworedFailure({ error: 'error email not found' })
+    );
+    store.select('loading').subscribe((loadingState) => {
+      expect(loadingState.show).toBeFalsy();
+    });
+    expect(toast.create).toHaveBeenCalledTimes(1);
   });
 });
