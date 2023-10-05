@@ -4,6 +4,9 @@ import {
   RecoveredPassword,
   RecoveredPassworedFailure,
   RecoveredPassworedSuccess,
+  login,
+  loginFailure,
+  loginSuccess,
 } from './login.action';
 
 const intialState: LoginState = {
@@ -38,6 +41,29 @@ const reducer = createReducer(
       error: action.error,
       isRecoveredPassword: false,
       isRecoveringPassword: false,
+    };
+  }),
+  on(login, (currentState, action) => {
+    return {
+      ...currentState,
+      isLoggedIn: false,
+      isLoggingIn: true,
+      error: null,
+    };
+  }),
+  on(loginSuccess, (currentState, action) => {
+    return {
+      ...currentState,
+      isLoggedIn: true,
+      isLoggingIn: false,
+    };
+  }),
+  on(loginFailure, (currentState, action) => {
+    return {
+      ...currentState,
+      error: action.error,
+      isLoggedIn: false,
+      isLoggingIn: false,
     };
   })
 );
